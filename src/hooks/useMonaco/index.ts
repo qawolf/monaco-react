@@ -7,12 +7,12 @@ function useMonaco() {
   const [monaco, setMonaco] = useState(loader.__getMonacoInstance());
 
   useMount(() => {
-    let cancelable;
+    let cancelable: ReturnType<typeof loader.init>;
 
     if (!monaco) {
       cancelable = loader.init();
 
-      cancelable.then(monaco => {
+      cancelable.then((monaco) => {
         setMonaco(monaco);
       });
     }
